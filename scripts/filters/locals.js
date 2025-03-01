@@ -5,11 +5,10 @@
 const keys = ['toc', 'reward_settings', 'quicklink'];
 
 hexo.extend.filter.register('template_locals', locals => {
-  const { version, config } = hexo;
+  const { config } = hexo;
   const { __, theme, page } = locals;
   const { i18n } = hexo.theme;
   // Hexo & NexT version
-  locals.hexo_version = version;
   locals.next_version = require('../../package.json').version;
   // Language & Config
   locals.title = __('title') !== 'title' ? __('title') : config.title;
@@ -21,7 +20,7 @@ hexo.extend.filter.register('template_locals', locals => {
   // See https://github.com/hexojs/hexo/pull/4614
   page.lang = page.lang || page.language;
   // Creative Commons
-  locals.ccURL = 'https://creativecommons.org/' + (theme.creative_commons.license === 'zero' ? 'publicdomain/zero/1.0/' : 'licenses/' + theme.creative_commons.license + '/4.0/') + (theme.creative_commons.language || '');
+  locals.ccURL = 'https://creativecommons.org/' + (theme.creative_commons.license === 'cc-zero' ? 'publicdomain/zero/1.0/' : 'licenses/' + theme.creative_commons.license + '/4.0/') + (theme.creative_commons.language || '');
   // PJAX
   locals.pjax = theme.pjax ? ' data-pjax' : '';
   // Front-matter
